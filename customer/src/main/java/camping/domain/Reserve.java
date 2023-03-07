@@ -14,53 +14,17 @@ import java.util.Date;
 @Data
 
 public class Reserve  {
-
-
-    
+ 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
-    
     private Long id;
-    
-    
-    
-    
-    
     private String region;
-    
-    
-    
-    
-    
     private Long customerId;
-    
-    
-    
-    
-    
     private Integer duration;
-    
-    
-    
-    
-    
     private Long siteId;
-    
-    
-    
-    
-    
     private String reserveStatus;
-    
-    
-    
-    
-    
     private Long equipmentId;
+    private Integer siteCnt;
 
     @PostPersist
     public void onPostPersist(){
