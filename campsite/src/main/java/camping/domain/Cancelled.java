@@ -9,6 +9,9 @@ import java.util.*;
 public class Cancelled extends AbstractEvent {
 
     private Long id;
+    private Long customerId;
+    private Long siteId;
+    private Integer siteCnt;
 }
 
 

@@ -32,14 +32,15 @@ public class Reserve  {
 
         Reserved reserved = new Reserved(this);
         reserved.publishAfterCommit();
-
-
-
-        Cancelled cancelled = new Cancelled(this);
-        cancelled.publishAfterCommit();
-
     }
 
+
+    @PostUpdate
+    public void onPostUpdate(){
+        Cancelled cancelled = new Cancelled(this);
+        cancelled.publishAfterCommit();
+    }
+    
     public static ReserveRepository repository(){
         ReserveRepository reserveRepository = CustomerApplication.applicationContext.getBean(ReserveRepository.class);
         return reserveRepository;
