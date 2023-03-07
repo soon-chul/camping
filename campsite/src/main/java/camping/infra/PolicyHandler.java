@@ -28,15 +28,8 @@ public class PolicyHandler{
         Reserved event = reserved;
         System.out.println("\n\n##### listener DescreaseSite : " + reserved + "\n\n");
 
-
-        
-
         // Sample Logic //
         Site.descreaseSite(event);
-        
-
-        
-
     }
 
     @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='Cancelled'")
@@ -45,15 +38,8 @@ public class PolicyHandler{
         Cancelled event = cancelled;
         System.out.println("\n\n##### listener IncreaseSite : " + cancelled + "\n\n");
 
-
-        
-
         // Sample Logic //
         Site.increaseSite(event);
-        
-
-        
-
     }
 
 }

@@ -89,42 +89,34 @@ public class Rent  {
         /** Example 1:  new item 
         Rent rent = new Rent();
         repository().save(rent);
-
         */
 
-        /** Example 2:  finding and process
-        
-        repository().findById(reserved.get???()).ifPresent(rent->{
+        /** Example 2:  finding and process */     
+        System.out.println("reserved.getId=========" + reserved.getId() + ", getEquipmentId:" + reserved.getEquipmentId() +"#######");
+        repository().findById(reserved.getEquipmentId()).ifPresent(rent->{
             
-            rent // do something
+            rent.setQty(rent.getQty() - reserved.getRentQty()); // do something
+            rent.setReserveId(reserved.getId());
+            rent.setId(reserved.getEquipmentId());
             repository().save(rent);
-
-
-         });
-        */
-
-        
+         });        
     }
+
     public static void decreaseEquipment(SiteReserved siteReserved){
 
         /** Example 1:  new item 
         Rent rent = new Rent();
         repository().save(rent);
-
         */
 
-        /** Example 2:  finding and process
-        
-        repository().findById(siteReserved.get???()).ifPresent(rent->{
-            
-            rent // do something
+        /** Example 2:  finding and process */        
+        System.out.println("siteReserved.getId=========" + siteReserved.getId() + ", getEquipmentId:" + siteReserved.getEquipmentId() +"#######");
+        repository().findById(siteReserved.getEquipmentId()).ifPresent(rent->{            
+            rent.setQty(rent.getQty() - siteReserved.getRentQty()); // do something
+            rent.setReserveId(siteReserved.getId());
+            rent.setId(siteReserved.getEquipmentId());
             repository().save(rent);
-
-
          });
-        */
-
-        
     }
     public static void increaseEquipment(EquipmentCanclled equipmentCanclled){
 
@@ -134,7 +126,7 @@ public class Rent  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process    
         
         repository().findById(equipmentCanclled.get???()).ifPresent(rent->{
             
@@ -143,9 +135,7 @@ public class Rent  {
 
 
          });
-        */
-
-        
+        */        
     }
     public static void increaseEquipment(SiteCancelled siteCancelled){
 

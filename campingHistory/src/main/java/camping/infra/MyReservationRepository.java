@@ -6,9 +6,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel="rentalnfos", path="rentalnfos")
-public interface RentalnfoRepository extends PagingAndSortingRepository<Rentalnfo, Long> {
+public interface MyReservationRepository extends PagingAndSortingRepository<MyReservation, Long> {
 
-    List<Rentalnfo> findByReserveId(Long reserveId);
+    List<MyReservation> findByReserveId(Long reserveId);
 
 
     void deleteByReserveId(Long reserveId);

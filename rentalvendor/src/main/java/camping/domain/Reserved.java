@@ -11,6 +11,8 @@ public class Reserved extends AbstractEvent {
     private Long id;
     private Long customerId;
     private Long siteId;
+    private Long equipmentId; // 추가
+    private Integer rentQty;  // 추가
 }
 
 

@@ -15,76 +15,25 @@ import java.util.Date;
 
 public class Site  {
 
-
-    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     
-    
-    
-    
-    
-    private Long id;
-    
-    
-    
-    
-    
+    private Long id;    
     private String siteName;
-    
-    
-    
-    
-    
     private Long customerId;
-    
-    
-    
-    
-    
     private Integer siteCnt;
-    
-    
-    
-    
-    
-    private String address;
-    
-    
-    
-    
-    
+    private String address;    
     private Integer siteNo;
-    
-    
-    
-    
-    
     private String siteStatus;
-    
-    
-    
-    
-    
-    private String posting;
-    
-    
-    
-    
-    
+    private String posting;    
     private Long reserveId;
+    private Long equipmentId;
+    private Integer rentQty;
 
     @PostUpdate
     public void onPostUpdate(){
-
-
-
-
-
-/* 
-        SiteCancelled siteCancelled = new SiteCancelled(this);
-        siteCancelled.publishAfterCommit();
-*/
+        // SiteCancelled siteCancelled = new SiteCancelled(this);
+        // siteCancelled.publishAfterCommit();
     }
 
     public static SiteRepository repository(){
@@ -92,16 +41,16 @@ public class Site  {
         return siteRepository;
     }
 
-
-
-
     public static void descreaseSite(Reserved reserved){
 
         /** Example 2:  finding and process */
-        System.out.println("siteId1: ====================" + reserved.getSiteId());
         repository().findById(reserved.getSiteId()).ifPresent(site -> {
-            System.out.println("siteId2:" + reserved.getSiteId());
             site.setSiteCnt(site.getSiteCnt() - reserved.getSiteCnt()); 
+            
+            site.setReserveId(reserved.getId());
+            site.setCustomerId(reserved.getCustomerId());
+            site.setEquipmentId(reserved.getEquipmentId());
+            site.setRentQty(reserved.getRentQty());
             repository().save(site);
 
             SiteReserved siteReserved = new SiteReserved(site);
@@ -110,35 +59,18 @@ public class Site  {
     }
     
     public static void increaseSite(Cancelled cancelled){
-
-        /** Example 1:  new item 
-        Site site = new Site();
-        repository().save(site);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(cancelled.get???()).ifPresent(site->{
-            
-            site // do something
-            repository().save(site);
-
-
-         });
-        
-
+        /** Example 2:  finding and process */
         repository().findById(cancelled.getSiteId()).ifPresent(site->{
             
             site.setSiteCnt(site.getSiteCnt() + cancelled.getSiteCnt()); 
+            site.setReserveId(cancelled.getId());
+            site.setCustomerId(cancelled.getCustomerId());
+            site.setEquipmentId(cancelled.getEquipmentId());
+            site.setRentQty(cancelled.getRentQty());
             repository().save(site);
-
-
-         });
-        */
-
-
-        
+            SiteCancelled siteCancelled = new SiteCancelled(site);
+            siteCancelled.publishAfterCommit();
+        });        
     }
 
 

@@ -11,6 +11,8 @@ import lombok.*;
 public class Cancelled extends AbstractEvent {
 
     private Long id;
+    private Long siteId;
+    private Integer siteCnt;
 
     public Cancelled(Reserve aggregate){
         super(aggregate);

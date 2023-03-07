@@ -27,16 +27,8 @@ public class PolicyHandler{
 
         SiteReserved event = siteReserved;
         System.out.println("\n\n##### listener Updatesiteinfo : " + siteReserved + "\n\n");
-
-
-        
-
         // Sample Logic //
         Reserve.updatesiteinfo(event);
-        
-
-        
-
     }
 
     @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='EquipmentPicked'")
@@ -45,15 +37,8 @@ public class PolicyHandler{
         EquipmentPicked event = equipmentPicked;
         System.out.println("\n\n##### listener Updaterental : " + equipmentPicked + "\n\n");
 
-
-        
-
         // Sample Logic //
         Reserve.updaterental(event);
-        
-
-        
-
     }
 
 }

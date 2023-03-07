@@ -7,12 +7,12 @@ import lombok.Data;
 
 
 @Entity
-@Table(name="Rentalnfo_table")
+@Table(name="MyReservation_table")
 @Data
-public class Rentalnfo {
+public class MyReservation {
 
         @Id
-        //@GeneratedValue(strategy=GenerationType.AUTO)
+        @GeneratedValue(strategy=GenerationType.AUTO)
         private Long id;
         private Long customerId;
         private Long siteId;

@@ -25,11 +25,10 @@ public class Reserve  {
     private String reserveStatus;
     private Long equipmentId;
     private Integer siteCnt;
+    private Integer rentQty;
 
     @PostPersist
     public void onPostPersist(){
-
-
         Reserved reserved = new Reserved(this);
         reserved.publishAfterCommit();
     }

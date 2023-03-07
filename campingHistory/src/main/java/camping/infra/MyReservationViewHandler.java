@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RentalnfoViewHandler {
+public class MyReservationViewHandler {
 
     @Autowired
-    private RentalnfoRepository rentalnfoRepository;
+    private MyReservationRepository rentalnfoRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whenReserved_then_CREATE_1 (@Payload Reserved reserved) {
@@ -24,7 +24,7 @@ public class RentalnfoViewHandler {
             if (!reserved.validate()) return;
 
             // view 객체 생성
-            Rentalnfo rentalnfo = new Rentalnfo();
+            MyReservation rentalnfo = new MyReservation();
             // view 객체에 이벤트의 Value 를 set 함
             rentalnfo.setCustomerId(reserved.getCustomerId());
             rentalnfo.setReserveId(reserved.getId());
@@ -43,8 +43,8 @@ public class RentalnfoViewHandler {
             if (!siteReserved.validate()) return;
                 // view 객체 조회
 
-                List<Rentalnfo> rentalnfoList = rentalnfoRepository.findByReserveId(siteReserved.getReserveId());
-                for(Rentalnfo rentalnfo : rentalnfoList){
+                List<MyReservation> rentalnfoList = rentalnfoRepository.findByReserveId(siteReserved.getReserveId());
+                for(MyReservation rentalnfo : rentalnfoList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
                     rentalnfo.setSiteId(siteReserved.getId());
                     rentalnfo.setSiteName(siteReserved.getSiteName());
@@ -63,8 +63,8 @@ public class RentalnfoViewHandler {
             if (!equipmentPicked.validate()) return;
                 // view 객체 조회
 
-                List<Rentalnfo> rentalnfoList = rentalnfoRepository.findByReserveId(equipmentPicked.getReserveId());
-                for(Rentalnfo rentalnfo : rentalnfoList){
+                List<MyReservation> rentalnfoList = rentalnfoRepository.findByReserveId(equipmentPicked.getReserveId());
+                for(MyReservation rentalnfo : rentalnfoList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
                     rentalnfo.setEquipmentName(equipmentPicked.getEquipmentName());
                 // view 레파지 토리에 save
