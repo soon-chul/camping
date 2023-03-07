@@ -92,7 +92,6 @@ public class Rent  {
         */
 
         /** Example 2:  finding and process */     
-        System.out.println("reserved.getId=========" + reserved.getId() + ", getEquipmentId:" + reserved.getEquipmentId() +"#######");
         repository().findById(reserved.getEquipmentId()).ifPresent(rent->{
             
             rent.setQty(rent.getQty() - reserved.getRentQty()); // do something
@@ -110,7 +109,6 @@ public class Rent  {
         */
 
         /** Example 2:  finding and process */        
-        System.out.println("siteReserved.getId=========" + siteReserved.getId() + ", getEquipmentId:" + siteReserved.getEquipmentId() +"#######");
         repository().findById(siteReserved.getEquipmentId()).ifPresent(rent->{            
             rent.setQty(rent.getQty() - siteReserved.getRentQty()); // do something
             rent.setReserveId(siteReserved.getId());
