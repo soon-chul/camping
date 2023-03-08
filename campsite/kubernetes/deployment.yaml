@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: campsite
-          image: username/campsite:latest
+          image: soonchul/campsite:20230308
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -29,7 +29,7 @@ spec:
             failureThreshold: 10
           livenessProbe:
             httpGet:
-              path: '/actuator/health'
+              path: '/xxx/'
               port: 8080
             initialDelaySeconds: 120
             timeoutSeconds: 2
